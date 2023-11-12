@@ -9,6 +9,7 @@ namespace Dominio.Interface
     public interface IAsignatura : IGeneric<Asignatura>
     {
         Task<IEnumerable<Asignatura>> AsignaturasPrimerCuatrimestreTercerCursoGrado7();
-                Task<IEnumerable<Asignatura>> ObtenerAsignaturasEnIngenieriaInformatica();
+        Task<IEnumerable<Asignatura>> ObtenerAsignaturasEnIngenieriaInformatica();
+        Task<IEnumerable<object>> ObtenerAsignaturasSinProfesor();
     }
 }

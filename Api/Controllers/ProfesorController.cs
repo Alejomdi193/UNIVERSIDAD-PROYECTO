@@ -48,6 +48,41 @@ namespace Api.Controllers
             return mapper.Map<ProfesorDto>(profesor);
         } 
 
+        //Consulta 13
+
+        [HttpGet("ObtenerProfesoresYDepartamentosSinAsociacion")]
+         [ProducesResponseType(StatusCodes.Status200OK)]
+         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+         [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+         public async Task<ActionResult<IEnumerable<object>>> Get13()
+         {
+             var profesor = await unitOfWork.Profesores.ObtenerProfesoresYDepartamentosSinAsociacion();
+
+             if (profesor == null)
+             {
+                 return NotFound();
+             }
+             return mapper.Map<List<object>>(profesor);
+         }
+
+         //Consulta 14
+        [HttpGet("ObtenerProfesoresSinAsignaturas")]
+         [ProducesResponseType(StatusCodes.Status200OK)]
+         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+         [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+         public async Task<ActionResult<IEnumerable<object>>> Get14()
+         {
+             var profesor = await unitOfWork.Profesores. ObtenerProfesoresSinAsignaturas();
+
+             if (profesor == null)
+             {
+                 return NotFound();
+             }
+             return mapper.Map<List<object>>(profesor);
+         }
+
 
 
         [HttpPut("{id}")]

@@ -38,5 +38,25 @@ namespace Aplicacion.Repository
 
             return asignaturas;
         }
+
+        //Consulta 15
+
+        public async Task<IEnumerable<object>> ObtenerAsignaturasSinProfesor()
+        {
+            return await (
+                from asignatura in context.Asignaturas
+                where asignatura.IdProfesorFk == null
+                select new
+                {
+                    NombreAsignatura = asignatura.Nombre,
+                    Creditos = asignatura.Creditos,
+                    Tipo = asignatura.Tipo
+            
+                }
+            ).ToListAsync();
+        }
+
+
+
     }
 }

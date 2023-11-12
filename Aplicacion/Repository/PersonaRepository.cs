@@ -119,6 +119,74 @@ namespace Aplicacion.Repository
         }
 
 
+        //Consulta 9 
+        public async Task<IEnumerable<object>> ObtenerAsignaturasPorAlumno()
+        {
+            string nifAlumno = "26902806M";
+
+            return await (
+                from alumno in context.Personas
+                where alumno.Nif == nifAlumno && alumno.TipoPersona == Tipo.Alumno
+                from matricula in alumno.Alumno_se_Matricula_asignatura
+                select new
+                {
+                    NombreAsignatura = matricula.Asignatura.Nombre,
+                    AnioInicioCursoEscolar = matricula.CursoEscolar.Anyo_Inicio,
+                    AnioFinCursoEscolar = matricula.CursoEscolar.Anyo_Fin
+                }
+            ).ToListAsync();
+        }
+
+
+        //Consulta 10
+
+        public async Task<IEnumerable<string>> ObtenerDepartamentosConAsignaturasEnGrado()
+        {
+            return await (
+                from profesor in context.Profesores
+                where profesor.Asignaturas.Any(a => a.Grado.Nombre == "Grado en Ingeniería Informática (Plan 2015)")
+                select profesor.Departamento.Nombre
+            ).Distinct().ToListAsync();
+        }
+
+        //Consulta 11
+        public async Task<IEnumerable<object>> ObtenerAlumnosMatriculadosEnCursoEscolar()
+        {
+            return await (
+                from alumno in context.Personas
+                where alumno.TipoPersona == Tipo.Alumno &&
+                      alumno.Alumno_se_Matricula_asignatura.Any(matricula => matricula.CursoEscolar.Anyo_Inicio == 2018 && matricula.CursoEscolar.Anyo_Fin == 2019)
+                select new
+                {
+                    Nif = alumno.Nif,
+                    Nombre = $"{alumno.Nombre} {alumno.Apellido1} {alumno.Apellido2}"
+                }
+            ).ToListAsync();
+        }
+        //Consulta 12
+
+        public async Task<IEnumerable<object>> ObtenerProfesoresConDepartamentosOrdenados()
+        {
+            return await (
+                from profesor in context.Profesores
+                join departamento in context.DepartamentoS on profesor.IdDepartamentoFk equals departamento.Id into departamentosGroup
+                from dept in departamentosGroup.DefaultIfEmpty()
+                orderby dept.Nombre, profesor.Persona.Apellido1, profesor.Persona.Apellido2, profesor.Persona.Nombre
+                select new
+                {
+                    NombreDepartamento = dept != null ? dept.Nombre : "Sin Departamento",
+                    PrimerApellido = profesor.Persona.Apellido1,
+                    SegundoApellido = profesor.Persona.Apellido2,
+                    NombreProfesor = profesor.Persona.Nombre
+                }
+            ).ToListAsync();
+        }
+
+
+
+
+
+
 
 
     }

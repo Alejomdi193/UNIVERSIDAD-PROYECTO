@@ -18,5 +18,13 @@ namespace Dominio.Interface
 
         Task<IEnumerable<object>> ObtenerProfesoresConDepartamentoOrdenados();
 
+        Task<IEnumerable<object>> ObtenerAsignaturasPorAlumno();
+
+        Task<IEnumerable<string>> ObtenerDepartamentosConAsignaturasEnGrado();
+
+        Task<IEnumerable<object>> ObtenerAlumnosMatriculadosEnCursoEscolar();
+
+        Task<IEnumerable<object>> ObtenerProfesoresConDepartamentosOrdenados();
+
     }
 }

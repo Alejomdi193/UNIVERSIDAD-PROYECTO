@@ -8,5 +8,7 @@ namespace Dominio.Interface
 {
     public interface IProfesor :IGeneric<Profesor>
     {
+        Task<IEnumerable<object>> ObtenerProfesoresYDepartamentosSinAsociacion();
+        Task<IEnumerable<object>> ObtenerProfesoresSinAsignaturas();
     }
 }

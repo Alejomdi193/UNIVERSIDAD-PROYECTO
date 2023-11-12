@@ -79,6 +79,24 @@ namespace Api.Controllers
              return mapper.Map<List<AsignaturaDto>>(asignatura);
          }
 
+         //Consulta 15
+
+        [HttpGet("ObtenerAsignaturasSinProfesor")]
+         [ProducesResponseType(StatusCodes.Status200OK)]
+         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+         [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+         public async Task<ActionResult<IEnumerable<AsignaturaDto>>> Get15()
+         {
+            var asignatura = await unitOfWork.Asignaturas.ObtenerAsignaturasSinProfesor();
+
+             if (asignatura == null)
+             {
+                 return NotFound();
+             }
+             return mapper.Map<List<AsignaturaDto>>(asignatura);
+         }
+
 
 
 

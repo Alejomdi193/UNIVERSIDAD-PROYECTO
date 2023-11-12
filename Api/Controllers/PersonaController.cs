@@ -158,6 +158,73 @@ namespace Api.Controllers
              return mapper.Map<List<Object>>(persona);
          }
 
+         //Consulta 9 
+
+        [HttpGet("ObtenerAsignaturasPorAlumno")]
+         [ProducesResponseType(StatusCodes.Status200OK)]
+         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+         [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+         public async Task<ActionResult<IEnumerable<Object>>> Get9()
+         {
+             var persona = await unitOfWork.Personas.ObtenerAsignaturasPorAlumno();
+
+             if (persona == null)
+             {
+                 return NotFound();
+             }
+             return mapper.Map<List<Object>>(persona);
+         }
+
+        [HttpGet("ObtenerDepartamentosConAsignaturasEnGrado")]
+         [ProducesResponseType(StatusCodes.Status200OK)]
+         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+         [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+         public async Task<ActionResult<IEnumerable<string>>> Get10()
+         {
+             var persona = await unitOfWork.Personas.ObtenerDepartamentosConAsignaturasEnGrado();;
+
+             if (persona == null)
+             {
+                 return NotFound();
+             }
+             return mapper.Map<List<string>>(persona);
+         }
+
+        [HttpGet("ObtenerAlumnosMatriculadosEnCursoEscolar")]
+         [ProducesResponseType(StatusCodes.Status200OK)]
+         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+         [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+         public async Task<ActionResult<IEnumerable<object>>> Get11()
+         {
+             var persona = await unitOfWork.Personas.ObtenerAlumnosMatriculadosEnCursoEscolar();
+
+             if (persona == null)
+             {
+                 return NotFound();
+             }
+             return mapper.Map<List<object>>(persona);
+         }
+
+
+
+        [HttpGet("ObtenerProfesoresConDepartamentosOrdenados")]
+         [ProducesResponseType(StatusCodes.Status200OK)]
+         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+         [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+         public async Task<ActionResult<IEnumerable<object>>> Get12()
+         {
+             var persona = await unitOfWork.Personas.ObtenerProfesoresConDepartamentosOrdenados();
+
+             if (persona == null)
+             {
+                 return NotFound();
+             }
+             return mapper.Map<List<object>>(persona);
+         }
 
 
         [HttpPut("{id}")]
