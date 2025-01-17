@@ -1,98 +1,89 @@
-Returns a list with the first surname, second surname and first name of all students. The list should be sorted alphabetically from lowest to highest by first last name, middle name and first name.
+# Proyecto API con .NET y MySQL - BackUpUniversidad 
 
-    ````sql
-      http://localhost:5186/Api/Persona/Apellidos
-    ```
+Este proyecto consiste en el desarrollo de una API en un proyecto de C# (.NET) conectado a una base de datos MySQL. La API implementa diversas consultas para obtener información específica de la base de datos de forma estructurada y eficiente.
 
-2. Find out the first and last name of the students who **have not** entered their phone number in the database.
+## Tecnologías Utilizadas
 
-    ````sql
-      http://localhost:5186/Api/Persona/SinNumero
-    ```
+- **.NET**: Framework para desarrollar aplicaciones robustas y escalables.
+- **MySQL**: Sistema de gestión de bases de datos relacional utilizado para almacenar y gestionar datos.
+- **Entity Framework Core**: Herramienta ORM (Mapeo Objeto-Relacional) que facilita la interacción con la base de datos.
 
-3. Returns the list of students who were born in `1999`.
+## Consultas Implementadas
 
-    ````sql
-     http://localhost:5186/Api/Persona/NacidosEn1999
-    ```
+### Consultas y Endpoints
 
-4. Returns the list of `teachers` who **have not** registered their phone number in the database and also have a tax ID ending in `K`.
+1. **Listado de nombres completos de los estudiantes ordenados alfabéticamente:**
+   - Endpoint: `http://localhost:5186/Api/Persona/Apellidos`
 
-    ````sql
-      http://localhost:5186/Api/Persona/ProfesoresSinCelYNif
-    ```
+2. **Estudiantes sin número de teléfono registrado:**
+   - Endpoint: `http://localhost:5186/Api/Persona/SinNumero`
 
-5. Returns the list of the subjects taught in the first term, in the third year of the degree that has the identifier `7`.
+3. **Estudiantes nacidos en 1999:**
+   - Endpoint: `http://localhost:5186/Api/Persona/NacidosEn1999`
 
-    ````sql
-      http://localhost:5186/Api/Asignatura/AsignaturasPrimerCuatrimestreTercer
-    ```
+4. **Profesores sin número de teléfono y con NIF terminado en 'K':**
+   - Endpoint: `http://localhost:5186/Api/Persona/ProfesoresSinCelYNif`
 
-6. Returns a list with the data of all **students** who have ever enrolled in the `Degree in Computer Engineering (Plan 2015)`.
+5. **Asignaturas del primer cuatrimestre, tercer año, identificador de grado 7:**
+   - Endpoint: `http://localhost:5186/Api/Asignatura/AsignaturasPrimerCuatrimestreTercer`
 
-    ````sql
-      http://localhost:5186/Api/Persona/AlumnasMatriculadasEnIngenieriaInformatica
-    ```
+6. **Estudiantes matriculados en el Grado en Ingeniería Informática (Plan 2015):**
+   - Endpoint: `http://localhost:5186/Api/Persona/AlumnasMatriculadasEnIngenieriaInformatica`
 
-7. Returns a list with all the subjects offered in the `Degree in Computer Engineering (Plan 2015)`.
+7. **Asignaturas ofrecidas en el Grado en Ingeniería Informática (Plan 2015):**
+   - Endpoint: `http://localhost:5186/Api/Asignatura/AsignaturasEnIngenieriaInformatica`
 
-    ````sql
-      http://localhost:5186/Api/Asignatura/AsignaturasEnIngenieriaInformatica
-    ```
+8. **Profesores y departamentos asociados, ordenados alfabéticamente:**
+   - Endpoint: `http://localhost:5186/Api/Profesor/ProfesoresConDepartamentoOrdenados`
 
-8. Return a list of the `teachers` along with the name of the `department` to which they are attached. The listing should return four columns, `first last name, middle last name, first name and department name.` The result will be sorted alphabetically from lowest to highest by `last name and first name.`.
+9. **Asignaturas del año escolar del estudiante con ID 26902806M:**
+   - Endpoint: `http://localhost:5186/Api/Persona/ObtenerAsignaturasPorAlumno`
 
-    ````sql
-      http://localhost:5186/Api/Profesor/ProfesoresConDepartamentoOrdenados
-    ```
+10. **Departamentos con profesores enseñando asignaturas en el Grado en Ingeniería Informática (Plan 2015):**
+    - Endpoint: `http://localhost:5186/Api/Persona/ObtenerDepartamentosConAsignaturasEnGrado`
 
-9. Returns a list with the name of the subjects, start year and end year of the school year of the student with ID `26902806M`.
+11. **Estudiantes matriculados durante el curso 2018/2019:**
+    - Endpoint: `http://localhost:5186/Api/Persona/ObtenerAlumnosMatriculadosEnCursoEscolar`
 
-    ````sql
-      http://localhost:5186/Api/Persona/ObtenerAsignaturasPorAlumno
-    ```
+12. **Profesores y departamentos (incluyendo profesores sin departamento):**
+    - Endpoint: `http://localhost:5186/Api/Persona/ObtenerProfesoresConDepartamentosOrdenados`
 
-10. Returns a list with the name of all the departments that have professors teaching a subject in the `Grado en Ingeniería Informática (Plan 2015)`.
+13. **Profesores no asociados a departamentos y departamentos sin profesores asociados:**
+    - Endpoint: `http://localhost:5186/Api/Profesor/ObtenerProfesoresYDepartamentosSinAsociacion`
 
-     ````sql
-       http://localhost:5186/Api/Persona/ObtenerDepartamentosConAsignaturasEnGrado
-     ```
+14. **Profesores que no imparten asignaturas:**
+    - Endpoint: `http://localhost:5186/Api/Profesor/ObtenerProfesoresSinAsignaturas`
 
-11. Returns a list of all students who have enrolled in a course during the 2018/2019 academic year.
+15. **Asignaturas sin profesor asignado:**
+    - Endpoint: `http://localhost:5186/Api/Asignatura/ObtenerAsignaturasSinProfesor`
 
-     ````sql
-       http://localhost:5186/Api/Persona/ObtenerAlumnosMatriculadosEnCursoEscolar
-     ```
+16. **Departamentos con asignaturas que no se han impartido nunca:**
+    - **Nota:** Consulta aún no implementada en el proyecto.
 
-12. Returns a list with the names of **all** teachers and the departments they are linked to. The listing should also show those teachers who have no department associated with them. The list should return four columns, department name, first surname, second surname and professor's first name. The result will be sorted alphabetically from lowest to highest by department name, last name and first name.
+## Organización del Proyecto
 
-     ````sql
-       http://localhost:5186/Api/Persona/ObtenerProfesoresConDepartamentosOrdenados
-     ```
+- **Controllers**: Contiene la lógica para manejar las solicitudes HTTP y gestionar las rutas.
+- **Models**: Define las estructuras de datos utilizadas para representar y procesar la información.
+- **Data**: Incluye el contexto de la base de datos configurado mediante Entity Framework Core.
 
+## Cómo Ejecutar el Proyecto
 
-13. Returns a list of professors that are not associated with a department.Returns a list of departments that do not have associated professors.
+1. Clona el repositorio.
+2. Configura tu cadena de conexión en el archivo `appsettings.json` con las credenciales de tu base de datos MySQL.
+3. Restaura los paquetes necesarios ejecutando:
 
-     ````sql
-      http://localhost:5186/Api/Profesor/ObtenerProfesoresYDepartamentosSinAsociacion
-     ```
+   ```bash
+   dotnet restore
+   ```
 
-14. Returns a list of teachers who do not teach any subject.
+4. Inicia el proyecto:
 
-     ````sql
-       http://localhost:5186/Api/Profesor/ObtenerProfesoresSinAsignaturas
-     ```
+   ```bash
+   dotnet run
+   ```
 
-15. Returns a list of subjects that do not have a teacher assigned to them.
+5. Accede a los endpoints mediante un cliente HTTP como Postman o tu navegador web.
 
-     ````sql
-       http://localhost:5186/Api/Asignatura/ObtenerAsignaturasSinProfesor
-     ```
+## Licencia
 
-16. Returns a list of all departments that have a subject that has not been taught in any school year. The result should show the name of the department and the name of the subject that has never been taught.
-
-     ````sql
-       # Query Here
-     ```
-
-
+Este proyecto está licenciado bajo la MIT License.
